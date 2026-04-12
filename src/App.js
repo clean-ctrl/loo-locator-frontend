@@ -8,7 +8,7 @@ import AddBathroomModal from './components/AddBathroomModal';
 import { useUserLocation } from './hooks/useUserLocation';
 import { fetchNearbyBathrooms } from './utils/api';
 
-const RADIUS = 1500; // metres
+const RADIUS = 1500;
 
 export default function App() {
   const { location, error: locError, loading: locLoading } = useUserLocation();
@@ -16,7 +16,7 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [filters, setFilters] = useState({ open: false, free: false, accessible: false, gender_neutral: false });
   const [showAdd, setShowAdd] = useState(false);
-  const [view, setView] = useState('split'); // 'split' | 'map' | 'list'
+  const [view, setView] = useState('split');
   const [loading, setLoading] = useState(false);
   const listRef = useRef(null);
 
@@ -29,7 +29,6 @@ export default function App() {
       if (filters.free) apiFilters.is_free = true;
       if (filters.accessible) apiFilters.is_accessible = true;
       if (filters.gender_neutral) apiFilters.gender_type = 'gender_neutral';
-
       const data = await fetchNearbyBathrooms({ ...location, radius: RADIUS, filters: apiFilters });
       setBathrooms(data.bathrooms || []);
     } catch (err) {
@@ -71,11 +70,7 @@ export default function App() {
 
       <FilterBar active={filters} onChange={setFilters} />
 
-      {/* View toggle */}
-      <div style={{
-        display: 'flex', gap: 0, padding: '8px 16px', background: '#fff',
-        borderBottom: '1px solid #e5e7eb', flexShrink: 0,
-      }}>
+      <div style={{ display: 'flex', gap: 0, padding: '8px 16px', background: '#fff', borderBottom: '1px solid #e5e7eb', flexShrink: 0 }}>
         {[['split', 'Map + List'], ['map', 'Map only'], ['list', 'List only']].map(([v, label]) => (
           <button key={v} onClick={() => setView(v)} style={{
             flex: 1, padding: '6px 0', fontSize: 12, cursor: 'pointer',
@@ -86,83 +81,29 @@ export default function App() {
         ))}
       </div>
 
-      {/* Main content */}
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden', position: 'relative' }}>
-
-        {/* Map */}
         {(view === 'split' || view === 'map') && location && (
           <div style={{ flex: view === 'split' ? '0 0 55%' : '1', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-            <MapView
-              center={location}
-              bathrooms={bathrooms}
-              selectedId={selected?.id}
-              onSelect={handleSelect}
-              radius={RADIUS}
-            />
+            <MapView center={location} bathrooms={bathrooms} selectedId={selected?.id} onSelect={handleSelect} radius={RADIUS} />
             {selected && (
-              <BathroomDetail
-                bathroom={selected}
-                userLocation={location}
-                onClose={() => setSelected(null)}
-                onUpdate={loadBathrooms}
-              />
+              <BathroomDetail bathroom={selected} userLocation={location} onClose={() => setSelected(null)} onUpdate={loadBathrooms} />
             )}
           </div>
         )}
 
-        {/* List */}
         {(view === 'split' || view === 'list') && (
-          <div ref={listRef} style={{
-            flex: view === 'split' ? '0 0 45%' : '1',
-            overflowY: 'auto',
-            borderLeft: view === 'split' ? '1px solid #e5e7eb' : 'none',
-            background: '#fff',
-          }}>
+          <div ref={listRef} style={{ flex: view === 'split' ? '0 0 45%' : '1', overflowY: 'auto', borderLeft: view === 'split' ? '1px solid #e5e7eb' : 'none', background: '#fff' }}>
             {loading ? (
-              <div style={{ padding: 24, textAlign: 'center', color: '#9ca3af', fontSize: 14 }}>
-                Looking for loos nearby...
-              </div>
+              <div style={{ padding: 24, textAlign: 'center', color: '#9ca3af', fontSize: 14 }}>Looking for loos nearby...</div>
             ) : bathrooms.length === 0 ? (
               <div style={{ padding: 24, textAlign: 'center', color: '#9ca3af', fontSize: 14 }}>
                 No bathrooms found nearby.<br />
-                <button onClick={() => setShowAdd(true)} style={{
-                  marginTop: 12, color: '#2563eb', background: 'none',
-                  border: 'none', fontSize: 14, cursor: 'pointer', textDecoration: 'underline',
-                }}>Add the first one!</button>
+                <button onClick={() => setShowAdd(true)} style={{ marginTop: 12, color: '#2563eb', background: 'none', border: 'none', fontSize: 14, cursor: 'pointer', textDecoration: 'underline' }}>Add the first one!</button>
               </div>
             ) : (
               bathrooms.map(b => (
-                <BathroomCard
-                  key={b.id}
-                  bathroom={b}
-                  userLocation={location}
-                  selected={selected?.id === b.id}
-                  onClick={() => handleSelect(b)}
-                />
+                <BathroomCard key={b.id} bathroom={b} userLocation={location} selected={selected?.id === b.id} onClick={() => handleSelect(b)} />
               ))
             )}
-
-            {/* Detail panel in list view */}
             {view === 'list' && selected && (
-              <BathroomDetail
-                bathroom={selected}
-                userLocation={location}
-                onClose={() => setSelected(null)}
-                onUpdate={loadBathrooms}
-              />
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Add bathroom modal */}
-      {showAdd && (
-        <AddBathroomModal
-          userLocation={location}
-          onClose={() => setShowAdd(false)}
-          onAdded={handleAdded}
-        />
-      )}
-    </div>
-  );
-}
+              <BathroomDetail bathroom={se
