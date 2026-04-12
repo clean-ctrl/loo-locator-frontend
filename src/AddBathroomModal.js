@@ -1,18 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
-const MAPS_KEY = process.env.REACT_APP_GOOGLE_MAPS_KEY;
-
-async function geocodeAddress(address) {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${MAPS_KEY}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  if (data.status === 'OK' && data.results.length > 0) {
-    const { lat, lng } = data.results[0].geometry.location;
-    return { lat, lng };
-  }
-  throw new Error('Address not found — please try a more specific address');
-}
 
 export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
   const [form, setForm] = useState({
@@ -24,53 +12,53 @@ export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
     requires_key: false,
     customers_only: false,
   });
+  const [coords, setCoords] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [geocoding, setGeocoding] = useState(false);
   const [error, setError] = useState('');
-  const [confirmedLocation, setConfirmedLocation] = useState(null);
+  const addressRef = useRef(null);
+  const autocompleteRef = useRef(null);
 
-  async function handleAddressBlur() {
-    if (!form.address) return;
-    setGeocoding(true);
-    setError('');
-    try {
-      const coords = await geocodeAddress(form.address);
-      setConfirmedLocation(coords);
-    } catch (e) {
-      setError(e.message);
-      setConfirmedLocation(null);
-    }
-    setGeocoding(false);
-  }
+  useEffect(() => {
+    if (!window.google || !addressRef.current) return;
+
+    const autocomplete = new window.google.maps.places.Autocomplete(addressRef.current, {
+      types: ['address'],
+      componentRestrictions: { country: 'ca' },
+      fields: ['formatted_address', 'geometry', 'name'],
+    });
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        setError('Could not find that address — please select one from the dropdown');
+        return;
+      }
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      setCoords({ lat, lng });
+      setForm(f => ({ ...f, address: place.formatted_address }));
+      setError('');
+    });
+
+    autocompleteRef.current = autocomplete;
+
+    return () => {
+      window.google.maps.event.clearInstanceListeners(autocomplete);
+    };
+  }, []);
 
   async function handleSubmit() {
     if (!form.name) { setError('Name is required.'); return; }
     if (!form.address) { setError('Address is required.'); return; }
-
-    let coords = confirmedLocation;
-    if (!coords) {
-      setGeocoding(true);
-      try {
-        coords = await geocodeAddress(form.address);
-        setConfirmedLocation(coords);
-      } catch (e) {
-        setError(e.message);
-        setGeocoding(false);
-        return;
-      }
-      setGeocoding(false);
-    }
+    if (!coords) { setError('Please select an address from the dropdown suggestions.'); return; }
 
     setSaving(true);
+    setError('');
     try {
       const r = await fetch(`${BASE_URL}/api/bathrooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          lat: coords.lat,
-          lng: coords.lng,
-        }),
+        body: JSON.stringify({ ...form, lat: coords.lat, lng: coords.lng }),
       });
       const result = await r.json();
       onAdded(result);
@@ -84,6 +72,7 @@ export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
   const inp = {
     width: '100%', padding: '10px 12px', borderRadius: 8,
     border: '1px solid #d1d5db', fontSize: 14, outline: 'none',
+    boxSizing: 'border-box',
   };
 
   return (
@@ -97,7 +86,9 @@ export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
 
         {/* Name */}
         <div style={{ marginBottom: 16 }}>
-          <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 5 }}>Name *</label>
+          <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 5 }}>
+            Bathroom name *
+          </label>
           <input
             value={form.name}
             onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
@@ -106,20 +97,27 @@ export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
           />
         </div>
 
-        {/* Address with geocoding */}
+        {/* Address autocomplete */}
         <div style={{ marginBottom: 16 }}>
-          <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 5 }}>Address *</label>
+          <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#374151', marginBottom: 5 }}>
+            Address * <span style={{ fontWeight: 400, color: '#9ca3af' }}>(start typing and pick from the list)</span>
+          </label>
           <input
+            ref={addressRef}
             value={form.address}
-            onChange={e => { setForm(f => ({ ...f, address: e.target.value })); setConfirmedLocation(null); }}
-            onBlur={handleAddressBlur}
-            placeholder="e.g. 777 Royal Oak Dr, Victoria, BC"
-            style={{ ...inp, borderColor: confirmedLocation ? '#16a34a' : '#d1d5db' }}
+            onChange={e => { setForm(f => ({ ...f, address: e.target.value })); setCoords(null); }}
+            placeholder="e.g. 777 Royal Oak Dr, Victoria"
+            style={{ ...inp, borderColor: coords ? '#16a34a' : '#d1d5db' }}
+            autoComplete="off"
           />
-          {geocoding && <div style={{ fontSize: 12, color: '#6b7280', marginTop: 4 }}>📍 Looking up address...</div>}
-          {confirmedLocation && !geocoding && (
+          {coords && (
             <div style={{ fontSize: 12, color: '#16a34a', marginTop: 4 }}>
-              ✓ Location found: {confirmedLocation.lat.toFixed(5)}, {confirmedLocation.lng.toFixed(5)}
+              ✓ Location confirmed
+            </div>
+          )}
+          {!coords && form.address.length > 3 && (
+            <div style={{ fontSize: 12, color: '#f59e0b', marginTop: 4 }}>
+              ⚠ Please select an address from the dropdown
             </div>
           )}
         </div>
@@ -155,18 +153,22 @@ export default function AddBathroomModal({ userLocation, onClose, onAdded }) {
           ))}
         </div>
 
-        {error && <div style={{ color: '#dc2626', fontSize: 13, marginBottom: 12 }}>{error}</div>}
+        {error && (
+          <div style={{ color: '#dc2626', fontSize: 13, marginBottom: 12, padding: '8px 12px', background: '#fee2e2', borderRadius: 6 }}>
+            {error}
+          </div>
+        )}
 
         <button
           onClick={handleSubmit}
-          disabled={saving || geocoding}
+          disabled={saving}
           style={{
             width: '100%', padding: 13, borderRadius: 10,
-            background: saving || geocoding ? '#93c5fd' : '#2563eb',
-            color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer',
+            background: saving ? '#93c5fd' : '#2563eb',
+            color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: saving ? 'default' : 'pointer',
           }}
         >
-          {saving ? 'Adding...' : geocoding ? 'Finding location...' : 'Add Bathroom'}
+          {saving ? 'Adding...' : 'Add Bathroom'}
         </button>
 
       </div>
