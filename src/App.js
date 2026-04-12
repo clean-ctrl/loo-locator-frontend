@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import Header from './components/Header';
-import FilterBar from './components/FilterBar';
-import MapView from './components/MapView';
-import BathroomCard from './components/BathroomCard';
-import BathroomDetail from './components/BathroomDetail';
-import AddBathroomModal from './components/AddBathroomModal';
+import Header from './Header';
+import FilterBar from './FilterBar';
+import MapView from './MapView';
+import BathroomCard from './BathroomCard';
+import BathroomDetail from './BathroomDetail';
+import AddBathroomModal from './AddBathroomModal';
 import { useUserLocation } from './hooks/useUserLocation';
 import { fetchNearbyBathrooms } from './utils/api';
 
