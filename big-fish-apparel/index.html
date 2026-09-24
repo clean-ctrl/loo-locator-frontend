@@ -7,7 +7,6 @@
   <meta name="description" content="Cozy, warm fish fleeces designed in Victoria, BC. 5% of profits go to local stream and salmon habitat restoration with Peninsula Streams Society." />
   <meta property="og:title" content="Big Fish Apparel" />
   <meta property="og:description" content="Cozy fish fleeces designed in Victoria, BC. 5% of profits back to local streams." />
-  <meta property="og:image" content="images/hero.jpg" />
   <meta name="theme-color" content="#123236" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath fill='%23e8735a' d='M20 50C50 15 120 12 160 45L190 22 182 50 190 78 160 55C120 88 50 85 20 50Z'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +21,20 @@
       <symbol id="fish" viewBox="0 0 200 100">
         <path d="M20 50C50 15 120 12 160 45L190 22 182 50 190 78 160 55C120 88 50 85 20 50Z" />
         <circle cx="46" cy="45" r="5" fill="var(--eye, #fbf8f2)" />
+      </symbol>
+      <symbol id="fish-chinook" viewBox="0 0 200 100">
+        <path d="M14 52C44 10 124 8 162 44L192 18 184 52 192 84 162 60C124 94 44 92 14 52Z" />
+        <g fill="var(--eye, #fbf8f2)" opacity=".55"><circle cx="92" cy="34" r="3" /><circle cx="112" cy="30" r="3" /><circle cx="132" cy="36" r="3" /><circle cx="150" cy="42" r="2.5" /><circle cx="102" cy="44" r="2.5" /></g>
+        <circle cx="42" cy="48" r="5" fill="var(--eye, #fbf8f2)" />
+      </symbol>
+      <symbol id="fish-rockfish" viewBox="0 0 200 100">
+        <path d="M58 34 64 10 74 28 84 8 94 27 104 10 112 29 122 16 128 38Z" />
+        <path d="M22 55C40 25 110 22 150 48L186 28 178 56 186 82 150 64C110 90 40 86 22 55Z" />
+        <circle cx="48" cy="50" r="6" fill="var(--eye, #fbf8f2)" />
+      </symbol>
+      <symbol id="fish-herring" viewBox="0 0 200 100">
+        <path d="M16 50C50 34 120 32 162 46L192 30 184 50 192 70 162 54C120 68 50 66 16 50Z" />
+        <circle cx="38" cy="48" r="3.5" fill="var(--eye, #fbf8f2)" />
       </symbol>
     </defs>
   </svg>
@@ -66,7 +79,7 @@
         <div class="hero__copy">
           <p class="eyebrow">Victoria, BC · Salish Sea</p>
           <h1 class="hero__title">Cozy fleeces for<br /><em>fish people.</em></h1>
-          <p class="hero__lede">Soft, warm pullovers covered in the fish we love — designed on the west coast for dock mornings, beach fires and everything in between. Every one helps put salmon back in local streams.</p>
+          <p class="hero__lede">Soft, warm pullovers covered in the fish we love — designed on the west coast for dock mornings, beach fires and everything in between. And 5% of profits go back to the streams they come from.</p>
           <div class="hero__cta">
             <a class="btn btn--primary" href="#shop">Shop the fleeces</a>
             <a class="btn btn--ghost" href="#streams">Where the 5% goes</a>
@@ -93,8 +106,8 @@
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish" /></svg><span>Lingcod</span><svg><use href="#fish" /></svg><span>Herring</span><svg><use href="#fish" /></svg>
-        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish" /></svg><span>Lingcod</span><svg><use href="#fish" /></svg><span>Herring</span><svg><use href="#fish" /></svg>
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-rockfish" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-rockfish" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
       </div>
     </div>
 
@@ -113,7 +126,8 @@
             <button class="chip" data-filter="accessories" aria-pressed="false">Accessories</button>
           </div>
         </div>
-        <ul class="products" data-products aria-live="polite"></ul>
+        <p class="sr-only" data-shop-status role="status"></p>
+        <ul class="products" data-products></ul>
         <p class="shop__note">Not sure on sizing? Send us a message on Instagram — we're happy to help you find your fit.</p>
       </div>
     </section>
@@ -131,17 +145,17 @@
             <p>Silver in the ocean, brick-red when they come home. Coho return to the tiny creeks of the Saanich Peninsula every fall.</p>
           </article>
           <article class="fish-card" style="--c: #d9a441">
-            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <svg aria-hidden="true"><use href="#fish-chinook" /></svg>
             <h3>Chinook</h3>
             <p>The big one. The Southern Resident orcas' favourite meal, and ours to protect.</p>
           </article>
           <article class="fish-card" style="--c: #c4553f">
-            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <svg aria-hidden="true"><use href="#fish-rockfish" /></svg>
             <h3>Rockfish</h3>
             <p>Spiky, grumpy-looking and can live over 100 years. Honestly, relatable.</p>
           </article>
           <article class="fish-card" style="--c: #9fc2b2">
-            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <svg aria-hidden="true"><use href="#fish-herring" /></svg>
             <h3>Pacific Herring</h3>
             <p>Small fish, big deal. Their spring spawn turns the coast milky-turquoise and feeds almost everything.</p>
           </article>
@@ -189,13 +203,13 @@
           <p class="eyebrow">Our story</p>
           <h2 id="story-title">Born on the coast, a little bit fishy.</h2>
           <p>Big Fish started with a simple idea: the fleece you grab on a cold, misty Victoria morning should be as fun as the ocean outside your door. So we covered one in fish.</p>
-          <p>Every design is drawn here on the island, inspired by the species we snorkel with, fish for and cheer on during salmon runs. They're cozy enough for a winter dock and bright enough to spot across the ferry deck.</p>
-          <p class="story__sign">— The Big Fish crew, Victoria BC</p>
+          <p>Every design is inspired by the Pacific Northwest species that swim right off our shores — the ones we cheer on every salmon run. Cozy enough for a winter dock, bright enough to spot across the ferry deck.</p>
+          <p class="story__sign">— Big Fish Apparel, Victoria BC</p>
         </div>
         <figure class="story__media photo" data-photo>
           <img src="images/story.jpg" alt="The Big Fish crew wearing fleeces by the water" width="800" height="800" loading="lazy" />
           <div class="photo__fallback story__art" aria-hidden="true">
-            <div class="story__fleece" data-fleece="#e8735a,#123236"></div>
+            <div class="story__fleece" data-fleece="#e8735a,#123236,chinook"></div>
           </div>
         </figure>
       </div>
@@ -224,10 +238,10 @@
         <p>New prints, restocks and salmon-run updates. No spam — fish don't like it either.</p>
         <form class="newsletter__form" data-newsletter novalidate>
           <label class="sr-only" for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+          <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" aria-describedby="news-msg" required />
           <button class="btn btn--primary" type="submit">Sign me up</button>
         </form>
-        <p class="newsletter__msg" data-newsletter-msg role="status" aria-live="polite"></p>
+        <p class="newsletter__msg" id="news-msg" data-newsletter-msg role="status" aria-live="polite"></p>
       </div>
     </section>
   </main>
