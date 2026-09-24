@@ -274,7 +274,8 @@ p { margin: 0 0 1em; }
 .marquee__track { display: flex; align-items: center; gap: 28px; width: max-content; animation: marquee 30s linear infinite; }
 .marquee span { font-family: var(--display); font-weight: 800; font-style: italic; font-size: clamp(1.4rem, 3vw, 2.2rem); }
 .marquee svg { width: 44px; height: 22px; fill: var(--salmon); flex: none; }
-.marquee:hover .marquee__track, .marquee.is-paused .marquee__track { animation-play-state: paused; }
+.marquee.is-paused .marquee__track { animation-play-state: paused; }
+@media (hover: hover) { .marquee:hover .marquee__track { animation-play-state: paused; } }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* Sections */

@@ -351,7 +351,15 @@
 
   // Tap the marquee to pause/resume it (hover pauses it on desktop).
   const marquee = $("[data-marquee]");
-  marquee.addEventListener("click", () => marquee.classList.toggle("is-paused"));
+  const toggleMarquee = () =>
+    marquee.setAttribute("aria-pressed", String(marquee.classList.toggle("is-paused")));
+  marquee.addEventListener("click", toggleMarquee);
+  marquee.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMarquee();
+    }
+  });
 
   // ---------- Reveal on scroll ----------
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
