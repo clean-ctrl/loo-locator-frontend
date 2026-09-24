@@ -6,7 +6,7 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const money = (n) => "$" + n.toFixed(0);
-  const moneyCAD = (n) => `${money(n)}<small>CAD</small>`;
+  const moneyCAD = (n) => `${money(n)} <small>CAD</small>`;
   let uid = 0;
 
   // ---------- Illustrations ----------
@@ -192,7 +192,7 @@
         `<div class="line__art">${fleeceSVG(p.colors.base, p.colors.fish, p.kind, p.fish)}</div>` +
         `<div class="line__info"><strong>${p.name}</strong><span>Size ${l.size}</span>` +
         `<div class="qty" role="group" aria-label="Quantity for ${p.name}">` +
-        `<button data-qty="${i}" data-d="-1" aria-label="One less ${p.name}, size ${l.size}">−</button><span aria-label="Quantity ${l.qty}">${l.qty}</span>` +
+        `<button data-qty="${i}" data-d="-1" aria-label="One less ${p.name}, size ${l.size}">−</button><span>${l.qty}</span>` +
         `<button data-qty="${i}" data-d="1" aria-label="One more ${p.name}, size ${l.size}">+</button></div></div>` +
         `<div class="line__price">${money(p.price * l.qty)}<button class="line__remove" data-remove="${i}" aria-label="Remove ${p.name}, size ${l.size}">Remove</button></div>`;
       list.appendChild(li);
@@ -254,9 +254,15 @@
       const i = +q.dataset.qty;
       const l = cart[i];
       l.qty += +q.dataset.d;
+      const name = products.find((x) => x.id === l.id).name;
+      $("[data-cart-status]").textContent = l.qty < 1 ? `${name} removed` : `${name} quantity ${l.qty}`;
       if (l.qty < 1) cart.splice(i, 1);
       else refocus = `[data-qty="${i}"][data-d="${q.dataset.d}"]`;
-    } else if (r) cart.splice(+r.dataset.remove, 1);
+    } else if (r) {
+      const l = cart[+r.dataset.remove];
+      $("[data-cart-status]").textContent = `${products.find((x) => x.id === l.id).name} removed`;
+      cart.splice(+r.dataset.remove, 1);
+    }
     else return;
     save();
     renderCart();
@@ -342,6 +348,10 @@
     msg.textContent = "You're in the school! Watch your inbox for new prints. 🐟";
     form.reset();
   });
+
+  // Tap the marquee to pause/resume it (hover pauses it on desktop).
+  const marquee = $("[data-marquee]");
+  marquee.addEventListener("click", () => marquee.classList.toggle("is-paused"));
 
   // ---------- Reveal on scroll ----------
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {

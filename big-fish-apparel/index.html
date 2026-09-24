@@ -32,6 +32,15 @@
         <path d="M22 55C40 25 110 22 150 48L186 28 178 56 186 82 150 64C110 90 40 86 22 55Z" />
         <circle cx="48" cy="50" r="6" fill="var(--eye, #fbf8f2)" />
       </symbol>
+      <symbol id="fish-sockeye" viewBox="0 0 200 100">
+        <path d="M20 56C40 30 70 12 110 18C140 24 152 40 160 48L190 26 182 54 190 80 160 60C120 86 50 84 20 56Z" />
+        <circle cx="44" cy="50" r="5" fill="var(--eye, #fbf8f2)" />
+      </symbol>
+      <symbol id="fish-lingcod" viewBox="0 0 200 100">
+        <path d="M8 52C24 28 70 30 120 40C150 45 166 47 174 48L194 32 188 52 194 72 174 56C150 60 100 72 60 70C32 68 14 62 8 52Z" />
+        <path d="M60 36 70 26 150 36 152 44Z" />
+        <circle cx="32" cy="46" r="5" fill="var(--eye, #fbf8f2)" />
+      </symbol>
       <symbol id="fish-herring" viewBox="0 0 200 100">
         <path d="M16 50C50 34 120 32 162 46L192 30 184 50 192 70 162 54C120 68 50 66 16 50Z" />
         <circle cx="38" cy="48" r="3.5" fill="var(--eye, #fbf8f2)" />
@@ -104,10 +113,10 @@
     </section>
 
     <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
+    <div class="marquee" aria-hidden="true" data-marquee>
       <div class="marquee__track">
-        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-rockfish" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
-        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-rockfish" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish-sockeye" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-lingcod" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish-chinook" /></svg><span>Sockeye</span><svg><use href="#fish-sockeye" /></svg><span>Rockfish</span><svg><use href="#fish-rockfish" /></svg><span>Lingcod</span><svg><use href="#fish-lingcod" /></svg><span>Herring</span><svg><use href="#fish-herring" /></svg>
       </div>
     </div>
 
@@ -127,6 +136,7 @@
           </div>
         </div>
         <p class="sr-only" data-shop-status role="status"></p>
+        <p class="sr-only" data-cart-status role="status"></p>
         <ul class="products" data-products></ul>
         <p class="shop__note">Not sure on sizing? Send us a message on Instagram — we're happy to help you find your fit.</p>
       </div>
@@ -207,7 +217,7 @@
           <p class="story__sign">— Big Fish Apparel, Victoria BC</p>
         </div>
         <figure class="story__media photo" data-photo>
-          <img src="images/story.jpg" alt="The Big Fish crew wearing fleeces by the water" width="800" height="800" loading="lazy" />
+          <img src="images/story.jpg" alt="Big Fish fleeces by the water" width="800" height="800" loading="lazy" />
           <div class="photo__fallback story__art" aria-hidden="true">
             <div class="story__fleece" data-fleece="#e8735a,#123236,chinook"></div>
           </div>
