@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Fish Apparel — Cozy Fish Fleeces from Victoria, BC</title>
+  <meta name="description" content="Cozy, warm fish fleeces designed in Victoria, BC. 5% of profits go to local stream and salmon habitat restoration with Peninsula Streams Society." />
+  <meta property="og:title" content="Big Fish Apparel" />
+  <meta property="og:description" content="Cozy fish fleeces designed in Victoria, BC. 5% of profits back to local streams." />
+  <meta property="og:image" content="images/hero.jpg" />
+  <meta name="theme-color" content="#123236" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath fill='%23e8735a' d='M20 50C50 15 120 12 160 45L190 22 182 50 190 78 160 55C120 88 50 85 20 50Z'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..900,100&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Shared SVG art. Used as fallbacks wherever a real photo hasn't been dropped into /images yet. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="fish" viewBox="0 0 200 100">
+        <path d="M20 50C50 15 120 12 160 45L190 22 182 50 190 78 160 55C120 88 50 85 20 50Z" />
+        <circle cx="46" cy="45" r="5" fill="var(--eye, #fbf8f2)" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="announce" role="note">
+    <span>5% of profits go back to local streams 🐟</span>
+    <span class="announce__sep" aria-hidden="true">·</span>
+    <span>Designed in Victoria, BC</span>
+  </div>
+
+  <header class="site-header" data-header>
+    <div class="wrap site-header__inner">
+      <a class="logo" href="#top" aria-label="Big Fish Apparel home">
+        <svg class="logo__fish" aria-hidden="true"><use href="#fish" /></svg>
+        <span class="logo__word">Big Fish<small>Apparel</small></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="nav-list" data-nav-toggle>
+          <span class="sr-only">Menu</span><span class="burger" aria-hidden="true"></span>
+        </button>
+        <ul id="nav-list" class="nav__list" data-nav-list>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#fish">Meet the Fish</a></li>
+          <li><a href="#streams">5% for Streams</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#insta">@bigfish.apparel</a></li>
+        </ul>
+      </nav>
+      <button class="cart-btn" data-cart-open aria-label="Open cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Zm3 0a3 3 0 0 1 6 0" /></svg>
+        <span class="cart-btn__count" data-cart-count>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Victoria, BC · Salish Sea</p>
+          <h1 class="hero__title">Cozy fleeces for<br /><em>fish people.</em></h1>
+          <p class="hero__lede">Soft, warm pullovers covered in the fish we love — designed on the west coast for dock mornings, beach fires and everything in between. Every one helps put salmon back in local streams.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#shop">Shop the fleeces</a>
+            <a class="btn btn--ghost" href="#streams">Where the 5% goes</a>
+          </div>
+          <ul class="hero__badges" aria-label="Highlights">
+            <li><strong>Cozy</strong> warm fish fleece</li>
+            <li><strong>Local</strong> Victoria-designed</li>
+            <li><strong>5%</strong> to stream restoration</li>
+          </ul>
+        </div>
+        <figure class="hero__media photo" data-photo>
+          <img src="images/hero.jpg" alt="Someone wearing a Big Fish fleece on the rocky Victoria shoreline" width="900" height="1100" fetchpriority="high" />
+          <div class="photo__fallback hero__art" aria-hidden="true">
+            <div class="hero__fleece" data-fleece="#1f4f4f,#e8735a"></div>
+            <svg class="hero__swim hero__swim--a"><use href="#fish" /></svg>
+            <svg class="hero__swim hero__swim--b"><use href="#fish" /></svg>
+          </div>
+          <figcaption class="hero__tag">Made for the Salish Sea chill</figcaption>
+        </figure>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c120-30 240-30 360 0s240 30 360 0 240-30 360 0 240 30 360 0v40H0Z" /></svg>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish" /></svg><span>Lingcod</span><svg><use href="#fish" /></svg><span>Herring</span><svg><use href="#fish" /></svg>
+        <span>Coho</span><svg><use href="#fish" /></svg><span>Chinook</span><svg><use href="#fish" /></svg><span>Sockeye</span><svg><use href="#fish" /></svg><span>Rockfish</span><svg><use href="#fish" /></svg><span>Lingcod</span><svg><use href="#fish" /></svg><span>Herring</span><svg><use href="#fish" /></svg>
+      </div>
+    </div>
+
+    <!-- SHOP -->
+    <section class="section" id="shop" aria-labelledby="shop-title">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">The Fish Fleece collection</p>
+            <h2 id="shop-title">Pick your fish.</h2>
+          </div>
+          <div class="filters" role="group" aria-label="Filter fleeces" data-filters>
+            <button class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" data-filter="adult" aria-pressed="false">Adult</button>
+            <button class="chip" data-filter="kids" aria-pressed="false">Kids</button>
+            <button class="chip" data-filter="accessories" aria-pressed="false">Accessories</button>
+          </div>
+        </div>
+        <ul class="products" data-products aria-live="polite"></ul>
+        <p class="shop__note">Not sure on sizing? Send us a message on Instagram — we're happy to help you find your fit.</p>
+      </div>
+    </section>
+
+    <!-- MEET THE FISH -->
+    <section class="section section--sea" id="fish" aria-labelledby="fish-title">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light">Meet the fish</p>
+        <h2 id="fish-title">Every print is a local.</h2>
+        <p class="section__lede">Our designs start with the species that swim right off our shores. Wear one and you'll probably end up explaining salmon life cycles at a party. We're okay with that.</p>
+        <div class="fish-cards">
+          <article class="fish-card" style="--c: #e8735a">
+            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <h3>Coho Salmon</h3>
+            <p>Silver in the ocean, brick-red when they come home. Coho return to the tiny creeks of the Saanich Peninsula every fall.</p>
+          </article>
+          <article class="fish-card" style="--c: #d9a441">
+            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <h3>Chinook</h3>
+            <p>The big one. The Southern Resident orcas' favourite meal, and ours to protect.</p>
+          </article>
+          <article class="fish-card" style="--c: #c4553f">
+            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <h3>Rockfish</h3>
+            <p>Spiky, grumpy-looking and can live over 100 years. Honestly, relatable.</p>
+          </article>
+          <article class="fish-card" style="--c: #9fc2b2">
+            <svg aria-hidden="true"><use href="#fish" /></svg>
+            <h3>Pacific Herring</h3>
+            <p>Small fish, big deal. Their spring spawn turns the coast milky-turquoise and feeds almost everything.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5% FOR STREAMS -->
+    <section class="section streams" id="streams" aria-labelledby="streams-title">
+      <div class="wrap streams__grid">
+        <figure class="streams__media photo" data-photo>
+          <img src="images/streams.jpg" alt="Volunteers planting native plants along a creek on the Saanich Peninsula" width="900" height="700" loading="lazy" />
+          <div class="photo__fallback streams__art" aria-hidden="true">
+            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+              <rect width="400" height="300" fill="#cfe0d6" />
+              <path d="M0 210c60-30 110 10 170-10s110-50 230-20v120H0Z" fill="#3d6b4f" />
+              <path d="M-10 250c80-40 150 20 230-10s120-30 190-10v80H-10Z" fill="#6aa5b8" />
+              <path d="M0 270c80-20 150 15 230 0s110-20 180-5v40H0Z" fill="#4c8aa0" />
+              <g fill="#e8735a"><use href="#fish" x="140" y="248" width="44" height="22" /><use href="#fish" x="220" y="262" width="34" height="17" /></g>
+              <g fill="#2a5a45"><path d="M60 210 80 120 100 210Z" /><path d="M300 190 325 90 350 190Z" /><path d="M340 200 360 130 380 200Z" /></g>
+            </svg>
+          </div>
+        </figure>
+        <div class="streams__copy">
+          <p class="eyebrow">5% for streams</p>
+          <h2 id="streams-title">Buy a fish. Help a fish.</h2>
+          <p>5% of our profits go straight back to local conservation, including the work of <a href="https://peninsulastreams.ca" target="_blank" rel="noopener">Peninsula Streams Society</a> — the folks restoring creeks, shorelines and salmon habitat around the Saanich Peninsula.</p>
+          <ul class="ticks">
+            <li>Restoring healthy streams and shorelines</li>
+            <li>Protecting salmon spawning habitat</li>
+            <li>Caring for whole watersheds, from headwaters to the sea</li>
+          </ul>
+          <div class="stat">
+            <span class="stat__num">5%</span>
+            <span class="stat__label">of profits, every single order,<br />back to the fish.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="section section--sand" id="story" aria-labelledby="story-title">
+      <div class="wrap story">
+        <div class="story__copy">
+          <p class="eyebrow">Our story</p>
+          <h2 id="story-title">Born on the coast, a little bit fishy.</h2>
+          <p>Big Fish started with a simple idea: the fleece you grab on a cold, misty Victoria morning should be as fun as the ocean outside your door. So we covered one in fish.</p>
+          <p>Every design is drawn here on the island, inspired by the species we snorkel with, fish for and cheer on during salmon runs. They're cozy enough for a winter dock and bright enough to spot across the ferry deck.</p>
+          <p class="story__sign">— The Big Fish crew, Victoria BC</p>
+        </div>
+        <figure class="story__media photo" data-photo>
+          <img src="images/story.jpg" alt="The Big Fish crew wearing fleeces by the water" width="800" height="800" loading="lazy" />
+          <div class="photo__fallback story__art" aria-hidden="true">
+            <div class="story__fleece" data-fleece="#e8735a,#123236"></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="section" id="insta" aria-labelledby="insta-title">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Out in the wild</p>
+            <h2 id="insta-title">Spotted on @bigfish.apparel</h2>
+          </div>
+          <a class="btn btn--ghost" href="https://www.instagram.com/bigfish.apparel/" target="_blank" rel="noopener">Follow along</a>
+        </div>
+        <ul class="insta" data-insta></ul>
+        <p class="insta__cta">Wearing your Big Fish somewhere great? Tag us <strong>@bigfish.apparel</strong> — we love seeing where the fish end up.</p>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section section--sea newsletter" aria-labelledby="news-title">
+      <div class="wrap newsletter__inner">
+        <svg class="newsletter__fish" aria-hidden="true"><use href="#fish" /></svg>
+        <h2 id="news-title">Join the school.</h2>
+        <p>New prints, restocks and salmon-run updates. No spam — fish don't like it either.</p>
+        <form class="newsletter__form" data-newsletter novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+          <button class="btn btn--primary" type="submit">Sign me up</button>
+        </form>
+        <p class="newsletter__msg" data-newsletter-msg role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <a class="logo logo--light" href="#top" aria-label="Big Fish Apparel home">
+          <svg class="logo__fish" aria-hidden="true"><use href="#fish" /></svg>
+          <span class="logo__word">Big Fish<small>Apparel</small></span>
+        </a>
+        <p class="footer__blurb">Cozy fish fleeces designed in Victoria, BC. 5% of profits support local stream and salmon habitat restoration.</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="#shop">Fish Fleeces</a></li>
+          <li><a href="#shop" data-jump-filter="kids">Kids</a></li>
+          <li><a href="#shop" data-jump-filter="accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>About</h3>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#streams">5% for Streams</a></li>
+          <li><a href="#fish">Meet the Fish</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Say hi</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/bigfish.apparel/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://bigfishapparel.ca" target="_blank" rel="noopener">bigfishapparel.ca</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer__base">
+      <span>© <span data-year>2026</span> Big Fish Apparel · Victoria, BC</span>
+      <span>Made with love for the Salish Sea 🐟</span>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div class="drawer-backdrop" data-cart-backdrop hidden></div>
+  <aside class="drawer" data-cart aria-labelledby="cart-title" role="dialog" aria-modal="true" hidden>
+    <div class="drawer__head">
+      <h2 id="cart-title">Your catch</h2>
+      <button class="icon-btn" data-cart-close aria-label="Close cart">×</button>
+    </div>
+    <ul class="drawer__items" data-cart-items></ul>
+    <div class="drawer__foot">
+      <div class="drawer__total"><span>Subtotal</span><strong data-cart-total>$0</strong></div>
+      <p class="drawer__give" data-cart-give></p>
+      <a class="btn btn--primary btn--block" href="https://bigfishapparel.ca" target="_blank" rel="noopener">Checkout</a>
+    </div>
+  </aside>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="products.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
